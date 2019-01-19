@@ -253,7 +253,7 @@ func (c *connectionBenchmark) runRateLimited() (time.Duration, error) {
 				}
 				c.successTotal++
 			}
-			_, err = file.WriteString(strconv.FormatInt(latency, 10))
+			_, err = file.WriteString(strconv.FormatInt(latency, 10) + "\n")
 			if err != nil {
 				panic(err)
 			}
