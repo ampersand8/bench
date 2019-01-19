@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/tylertreat/bench"
-	"github.com/tylertreat/bench/requester"
+	"github.com/ampersand8/bench"
+	"github.com/ampersand8/bench/requester"
 )
 
 func main() {

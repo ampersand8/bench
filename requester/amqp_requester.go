@@ -6,7 +6,7 @@ import (
 	"time"
 
 	"github.com/streadway/amqp"
-	"github.com/tylertreat/bench"
+	"github.com/ampersand8/bench"
 )
 
 // AMQPRequesterFactory implements RequesterFactory by creating a Requester

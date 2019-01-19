@@ -7,7 +7,7 @@ import (
 	"time"
 
 	"github.com/nsqio/go-nsq"
-	"github.com/tylertreat/bench"
+	"github.com/ampersand8/bench"
 )
 
 // NSQRequesterFactory implements RequesterFactory by creating a Requester

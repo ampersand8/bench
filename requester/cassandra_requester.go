@@ -2,7 +2,7 @@ package requester
 
 import (
 	"github.com/gocql/gocql"
-	"github.com/tylertreat/bench"
+	"github.com/ampersand8/bench"
 )
 
 // CassandraRequesterFactory implements RequesterFactory by creating a
