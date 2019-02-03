@@ -5,10 +5,7 @@ package bench
 
 import (
 	"context"
-	"log"
 	"math"
-	"os"
-	"strconv"
 	"sync"
 	"time"
 
@@ -219,10 +216,6 @@ func (c *connectionBenchmark) runRateLimited() (time.Duration, error) {
 		limiter  = rate.NewLimiter(limit, c.burst)
 		ctx      = context.Background()
 	)
-	file, err := os.OpenFile("test.txt", os.O_WRONLY|os.O_APPEND, 0644)
-	if err != nil {
-		log.Fatalf("failed opening file: %s", err)
-	}
 
 	for {
 		select {
@@ -252,10 +245,6 @@ func (c *connectionBenchmark) runRateLimited() (time.Duration, error) {
 					return 0, err
 				}
 				c.successTotal++
-			}
-			_, err = file.WriteString(strconv.FormatInt(latency, 10) + "\n")
-			if err != nil {
-				panic(err)
 			}
 		}
 	}
