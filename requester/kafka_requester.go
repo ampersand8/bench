@@ -8,7 +8,6 @@ import (
 
 	"github.com/Shopify/sarama"
 	"github.com/ampersand8/bench"
-	"github.com/rcrowley/go-metrics"
 )
 
 // KafkaRequesterFactory implements RequesterFactory by creating a Requester
@@ -88,22 +87,6 @@ func (k *kafkaRequester) Request() error {
 
 // Teardown is called upon benchmark completion.
 func (k *kafkaRequester) Teardown() error {
-	metricRegistry := metrics.NewRegistry()
-	histogram := getOrRegisterHistogram("name", metricRegistry)
-
-	if histogram == nil {
-		t.Error("Unexpected nil histogram")
-	}
-
-	// Fetch the metric
-	foundHistogram := metricRegistry.Get("name")
-
-	if foundHistogram != histogram {
-		t.Error("Unexpected different histogram", foundHistogram, histogram)
-}
-
-
-
 	if err := k.partitionConsumer.Close(); err != nil {
 		return err
 	}
