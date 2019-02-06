@@ -42,12 +42,16 @@ type kafkaRequester struct {
 // Setup prepares the Requester for benchmarking.
 func (k *kafkaRequester) Setup() error {
 	config := sarama.NewConfig()
+	const spare int32 = 256
+	var maxMessageSize int32 = int32(k.payloadSize) + spare
+	config.Producer.MaxMessageBytes = int(maxMessageSize)
+	config.Consumer.Fetch.Max = maxMessageSize
 	producer, err := sarama.NewAsyncProducer(k.urls, config)
 	if err != nil {
 		return err
 	}
 
-	consumer, err := sarama.NewConsumer(k.urls, nil)
+	consumer, err := sarama.NewConsumer(k.urls, config)
 	if err != nil {
 		producer.Close()
 		return err
